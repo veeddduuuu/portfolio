@@ -126,19 +126,19 @@ export const DATA = {
     social: {
       GitHub: {
         name: "GitHub",
-        url: "https://github.com/vedant2545", // TODO(vedant): confirm handle
+        url: "https://github.com/veeddduuuu/",
         icon: Icons.github,
         navbar: true,
       },
       LeetCode: {
         name: "LeetCode",
-        url: "https://leetcode.com/u/vedant2545", // TODO(vedant): confirm handle
+        url: "https://leetcode.com/u/veeddduuuu/",
         icon: Icons.leetcode,
         navbar: true,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/vedant-shende", // TODO(vedant): confirm handle
+        url: "https://www.linkedin.com/in/vedant-prashant-shende/",
         icon: Icons.linkedin,
         navbar: true,
       },
@@ -306,7 +306,7 @@ export const DATA = {
         {
           title: "LeetCode",
           icon: <Icons.leetcode className="h-4 w-4" />,
-          href: "https://leetcode.com/u/vedant2545", // TODO(vedant): confirm handle
+          href: "https://leetcode.com/u/veeddduuuu/",
         },
       ],
     },
