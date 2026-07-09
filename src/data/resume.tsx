@@ -1,0 +1,304 @@
+import { Icons } from "@/components/icons";
+import {
+  HomeIcon,
+  Code2,
+  Server,
+  Database,
+  MonitorSmartphone,
+  Cloud,
+  Wrench,
+} from "lucide-react";
+import { ReactLight } from "@/components/ui/svgs/reactLight";
+import { Typescript } from "@/components/ui/svgs/typescript";
+import { Nodejs } from "@/components/ui/svgs/nodejs";
+import { Golang } from "@/components/ui/svgs/golang";
+import { Postgresql } from "@/components/ui/svgs/postgresql";
+import { Docker } from "@/components/ui/svgs/docker";
+import { Kubernetes } from "@/components/ui/svgs/kubernetes";
+
+// =============================================================================
+// Single source of truth for the whole site. Populated from Vedant's resume.
+// A few links are marked `TODO(vedant)` — plug in your exact profile URLs.
+// Drop images where noted (public/…) and they'll render automatically.
+// =============================================================================
+
+export const DATA = {
+  name: "Vedant Shende",
+  initials: "VS",
+  url: "https://vedantshende.com", // TODO(vedant): your deployed domain
+  location: "Ranchi, Jharkhand, India",
+  locationLink: "https://www.google.com/maps/place/ranchi",
+  // Resume PDF lives in /public and is opened by the Resume button + dock.
+  resumeUrl: "/vedant_shende_resume.pdf",
+  description:
+    "Backend developer who likes building fast, fault-tolerant distributed systems.",
+  summary:
+    "I'm a Backend Developer and a B.Tech student at [BIT Mesra](/#education), focused on building resilient, real-time distributed systems. Most recently I interned at [Neo Labs](/#work), where I worked on production-grade Node.js infrastructure — LLM cost circuit breakers, dead-letter-queue recovery across workers, and async data-export pipelines. I like the hard parts of backend engineering: queues, state machines, sandboxing, observability and keeping things running when third-party services fall over. I've also solved 400+ DSA problems and love turning gnarly systems problems into clean, deterministic designs.",
+  avatarUrl: "/me.png", // TODO(vedant): drop your photo at public/me.png
+  navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
+
+  // ---------------------------------------------------------------------------
+  // Skills, grouped exactly as on the resume. Each item is { name, icon? }.
+  // ---------------------------------------------------------------------------
+  skills: {
+    Languages: {
+      icon: Code2,
+      items: [
+        { name: "TypeScript", icon: Typescript },
+        { name: "JavaScript" },
+        { name: "C++" },
+        { name: "Go", icon: Golang },
+      ],
+    },
+    Backend: {
+      icon: Server,
+      items: [
+        { name: "Node.js", icon: Nodejs },
+        { name: "Express.js" },
+        { name: "BullMQ" },
+        { name: "Prisma" },
+        { name: "WebSockets" },
+      ],
+    },
+    Databases: {
+      icon: Database,
+      items: [
+        { name: "PostgreSQL", icon: Postgresql },
+        { name: "Redis" },
+        { name: "MongoDB" },
+        { name: "Supabase" },
+      ],
+    },
+    Frontend: {
+      icon: MonitorSmartphone,
+      items: [
+        { name: "React", icon: ReactLight },
+        { name: "React Query" },
+        { name: "HTML5 / CSS3" },
+      ],
+    },
+    DevOps: {
+      icon: Cloud,
+      items: [
+        { name: "Docker", icon: Docker },
+        { name: "AWS (EC2)" },
+        { name: "Azure Blob Storage" },
+        { name: "Nginx" },
+        { name: "GitHub Actions" },
+        { name: "Linux" },
+        { name: "Kubernetes", icon: Kubernetes },
+      ],
+    },
+    Tools: {
+      icon: Wrench,
+      items: [
+        { name: "Git" },
+        { name: "Postman" },
+        { name: "Vercel" },
+        { name: "Render" },
+      ],
+    },
+  },
+
+  contact: {
+    email: "vedant2545@gmail.com",
+    tel: "+917709861898",
+    social: {
+      GitHub: {
+        name: "GitHub",
+        url: "https://github.com/vedant2545", // TODO(vedant): confirm handle
+        icon: Icons.github,
+        navbar: true,
+      },
+      LeetCode: {
+        name: "LeetCode",
+        url: "https://leetcode.com/u/vedant2545", // TODO(vedant): confirm handle
+        icon: Icons.leetcode,
+        navbar: true,
+      },
+      LinkedIn: {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/vedant-shende", // TODO(vedant): confirm handle
+        icon: Icons.linkedin,
+        navbar: true,
+      },
+      Resume: {
+        name: "Resume",
+        url: "/vedant_shende_resume.pdf",
+        icon: Icons.resume,
+        navbar: true,
+      },
+      email: {
+        name: "Send Email",
+        url: "mailto:vedant2545@gmail.com",
+        icon: Icons.email,
+        navbar: false,
+      },
+    },
+  },
+
+  work: [
+    {
+      company: "Neo Labs",
+      href: "#", // TODO(vedant): company link if any
+      badges: [],
+      location: "Remote",
+      title: "Backend Developer Intern",
+      logoUrl: "/neolabs.png", // TODO(vedant): public/neolabs.png
+      start: "Apr 2026",
+      end: "Jun 2026",
+      description:
+        "Worked on production Node.js infrastructure (TypeScript, Node.js, PostgreSQL, Redis, BullMQ, Azure Blob Storage). Architected a real-time OpenAI financial circuit breaker across API and worker nodes using Redis atomic evaluation (MULTI/LUA), enforcing per-user and global daily hard caps that mitigated runaway embedding loops and protected production budgets from uncapped LLM costs. Resolved a silent-failure gap across 7 production workers where jobs exhausting retries vanished without a trace, implementing a standardized dead-letter-queue handler with audit logging that restored failure visibility platform-wide. Built an asynchronous data-export pipeline generating user data as JSON/PDF, uploading to Azure Blob via SAS-signed URLs, and triggering push/in-app notifications on completion via a shared FCM/APNs dispatcher. Devised a two-step direct-to-blob audio upload flow (client-side SAS PUT, server-side confirm) with size-spoofing protection and mime validation, wiring successful uploads into the transcription pipeline.",
+    },
+  ],
+
+  education: [
+    {
+      school: "Birla Institute of Technology, Mesra",
+      href: "https://www.bitmesra.ac.in",
+      degree:
+        "B.Tech in Electrical and Electronics Engineering · CGPA 8.78/10",
+      logoUrl: "/bitmesra.png", // TODO(vedant): public/bitmesra.png
+      start: "Aug 2024",
+      end: "May 2028",
+    },
+  ],
+
+  // ---------------------------------------------------------------------------
+  // Projects — vertical timeline of wide cards.
+  // ---------------------------------------------------------------------------
+  projects: [
+    {
+      title: "Code Execution Engine",
+      href: "#", // TODO(vedant): live URL
+      dates: "2025",
+      active: true,
+      tagline: "Distributed, sandboxed code-execution platform.",
+      builtWith:
+        "Built a distributed sandboxed execution platform with a pre-warmed container pool, real-time log streaming and self-healing job recovery.",
+      description: "",
+      image: "", // TODO(vedant): screenshot at public/projects/code-execution-engine.png
+      bullets: [
+        "Designed a distributed, sandboxed execution platform with a pre-warmed container pool, cutting sandbox startup time by 99% (8ms vs. 2s cold start) and reducing runtime latency to <230ms.",
+        "Implemented a fault-tolerant job lifecycle using BullMQ and Redis to enforce a deterministic state machine, with self-healing DLQ routing and exponential backoffs for recovery across worker crashes.",
+        "Developed a real-time observability pipeline using Redis Pub/Sub and WebSockets to stream stdout/stderr logs and execution traces live to the client.",
+        "Orchestrated a 4-service architecture with Docker Compose and deployed on AWS EC2 behind an Nginx reverse proxy with CI/CD via GitHub Actions.",
+      ],
+      technologies: [
+        "Node.js",
+        "TypeScript",
+        "Express",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "WebSockets",
+        "Docker",
+        "AWS EC2",
+        "Nginx",
+      ],
+      links: [
+        {
+          type: "Live",
+          href: "#", // TODO(vedant): live URL
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "#", // TODO(vedant): repo URL
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "Niyantran",
+      href: "#", // TODO(vedant): live URL
+      dates: "2025",
+      active: true,
+      tagline: "Real-time traffic simulation & fleet-dispatch engine.",
+      builtWith:
+        "Built a real-time traffic simulation over a 294-junction road graph that computes optimized fleet dispatch and barricade plans, with deterministic fallbacks for third-party outages.",
+      description: "",
+      image: "", // TODO(vedant): screenshot at public/projects/niyantran.png
+      bullets: [
+        "Engineered a real-time traffic simulation on a 294-junction road graph using weighted BFS with time-of-day cascade multipliers to dynamically compute optimized fleet dispatch and barricade plans per event.",
+        "Assembled an async Node.js backend with WebSockets, Redis Pub/Sub and BullMQ to broadcast 30-second simulation ticks and live spatial telemetry with sub-second delivery.",
+        "Integrated Groq LLMs, Mappls API and Twilio (WhatsApp) for routing and alerts, with a multi-layer deterministic fallback — rule-based plans on Groq failure, haversine routing on Mappls outage.",
+        "Containerized a 5-service stack with Docker Compose, deployed to AWS EC2 with Nginx reverse proxy for WebSocket upgrading, and configured GitHub Actions CI/CD gating on all service builds.",
+      ],
+      technologies: [
+        "Node.js",
+        "TypeScript",
+        "Express",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "WebSockets",
+        "Docker",
+        "AWS EC2",
+        "Nginx",
+        "Groq",
+        "Mappls API",
+      ],
+      links: [
+        {
+          type: "Live",
+          href: "#", // TODO(vedant): live URL
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "#", // TODO(vedant): repo URL
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+  ],
+
+  // ---------------------------------------------------------------------------
+  // Achievements (awards, rankings, competitions).
+  // ---------------------------------------------------------------------------
+  achievements: [
+    {
+      title: "G.P. Birla Scholarship (2x)",
+      dates: "BIT Mesra",
+      location: "",
+      description:
+        "Awarded twice for outstanding academic performance at BIT Mesra.",
+      image: "",
+      links: [],
+    },
+    {
+      title: "Branch Topper",
+      dates: "Semester 1",
+      location: "",
+      description:
+        "Ranked 1st in the Electrical & Electronics Engineering branch in Semester 1.",
+      image: "",
+      links: [],
+    },
+    {
+      title: "Flipkart GRiD 2.0 — Round 2 Qualifier",
+      dates: "National level",
+      location: "",
+      description:
+        "Qualified for Round 2 out of 4,500+ competing teams in Flipkart's national-level AI traffic management challenge.",
+      image: "",
+      links: [],
+    },
+    {
+      title: "400+ DSA Problems Solved",
+      dates: "Ongoing",
+      location: "",
+      description:
+        "Solved 400+ data-structures & algorithms problems across LeetCode and TUF+.",
+      image: "",
+      links: [
+        {
+          title: "LeetCode",
+          icon: <Icons.leetcode className="h-4 w-4" />,
+          href: "https://leetcode.com/u/vedant2545", // TODO(vedant): confirm handle
+        },
+      ],
+    },
+  ],
+} as const;
