@@ -18,12 +18,14 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
   }
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      className="w-full aspect-video rounded-lg border border-border object-cover"
-      onError={() => setImageError(true)}
-    />
+    <div className="w-full aspect-video rounded-lg border border-border overflow-hidden bg-background">
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-[1.05]"
+        onError={() => setImageError(true)}
+      />
+    </div>
   );
 }
 

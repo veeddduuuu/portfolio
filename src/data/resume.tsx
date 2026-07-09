@@ -195,9 +195,94 @@ export const DATA = {
   // ---------------------------------------------------------------------------
   // Projects — vertical timeline of wide cards.
   // ---------------------------------------------------------------------------
-
-
-  // ---------------------------------------------------------------------------
+  projects: [
+    {
+      title: "Code Execution Engine",
+      href: "https://codeexec.duckdns.org",
+      dates: "2025",
+      active: true,
+      tagline: "Distributed, sandboxed code-execution platform.",
+      builtWith:
+        "Built a distributed sandboxed execution platform with a pre-warmed container pool, real-time log streaming and self-healing job recovery.",
+      description: "",
+      image: "/projects/code-execution-engine.png",
+      image2: "/projects/code-execution-engine-2.png",
+      bullets: [
+        "Designed a distributed, sandboxed execution platform with a pre-warmed container pool, cutting sandbox startup time by 99% (8ms vs. 2s cold start) and reducing runtime latency to <230ms.",
+        "Implemented a fault-tolerant job lifecycle using BullMQ and Redis to enforce a deterministic state machine, with self-healing DLQ routing and exponential backoffs for recovery across worker crashes.",
+        "Developed a real-time observability pipeline using Redis Pub/Sub and WebSockets to stream stdout/stderr logs and execution traces live to the client.",
+        "Orchestrated a 4-service architecture with Docker Compose and deployed on AWS EC2 behind an Nginx reverse proxy with CI/CD via GitHub Actions.",
+      ],
+      technologies: [
+        "Node.js",
+        "TypeScript",
+        "Express",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "WebSockets",
+        "Docker",
+        "AWS EC2",
+        "Nginx",
+      ],
+      links: [
+        {
+          type: "Live",
+          href: "https://codeexec.duckdns.org",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/veeddduuuu/Code-Execution-Engine",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "Niyantran",
+      href: "https://alphaq.duckdns.org",
+      dates: "2025",
+      active: true,
+      tagline: "Real-time traffic simulation & fleet-dispatch engine.",
+      builtWith:
+        "Built a real-time traffic simulation over a 294-junction road graph that computes optimized fleet dispatch and barricade plans, with deterministic fallbacks for third-party outages.",
+      description: "",
+      image: "/projects/niyantran.png",
+      image2: "/projects/niyantran-2.png",
+      bullets: [
+        "Engineered a real-time traffic simulation on a 294-junction road graph using weighted BFS with time-of-day cascade multipliers to dynamically compute optimized fleet dispatch and barricade plans per event.",
+        "Assembled an async Node.js backend with WebSockets, Redis Pub/Sub and BullMQ to broadcast 30-second simulation ticks and live spatial telemetry with sub-second delivery.",
+        "Integrated Groq LLMs, Mappls API and Twilio (WhatsApp) for routing and alerts, with a multi-layer deterministic fallback — rule-based plans on Groq failure, haversine routing on Mappls outage.",
+        "Containerized a 5-service stack with Docker Compose, deployed to AWS EC2 with Nginx reverse proxy for WebSocket upgrading, and configured GitHub Actions CI/CD gating on all service builds.",
+      ],
+      technologies: [
+        "Node.js",
+        "TypeScript",
+        "Express",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "WebSockets",
+        "Docker",
+        "AWS EC2",
+        "Nginx",
+        "Groq",
+        "Mappls API",
+      ],
+      links: [
+        {
+          type: "Live",
+          href: "https://alphaq.duckdns.org",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/veeddduuuu/niyantran",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+  ],  // ---------------------------------------------------------------------------
   // Achievements (awards, rankings, competitions).
   // ---------------------------------------------------------------------------
   achievements: [
