@@ -148,6 +148,12 @@ export const DATA = {
         icon: Icons.resume,
         navbar: true,
       },
+      takeuforward: {
+        name: "takeUforward",
+        url: "https://takeuforward.org/profile/vedant_shende",
+        icon: Icons.takeuforward,
+        navbar: true,
+      },
       email: {
         name: "Send Email",
         url: "mailto:vedant2545@gmail.com",
@@ -307,6 +313,11 @@ export const DATA = {
           title: "LeetCode",
           icon: <Icons.leetcode className="h-4 w-4" />,
           href: "https://leetcode.com/u/veeddduuuu/",
+        },
+        {
+          title: "takeUforward",
+          icon: <Icons.takeuforward className="h-4 w-4" />,
+          href: "https://takeuforward.org/profile/vedant_shende",
         },
       ],
     },
