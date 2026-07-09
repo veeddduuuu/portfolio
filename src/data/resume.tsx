@@ -15,6 +15,26 @@ import { Golang } from "@/components/ui/svgs/golang";
 import { Postgresql } from "@/components/ui/svgs/postgresql";
 import { Docker } from "@/components/ui/svgs/docker";
 import { Kubernetes } from "@/components/ui/svgs/kubernetes";
+import { Javascript } from "@/components/ui/svgs/javascript";
+import { Cpp } from "@/components/ui/svgs/cpp";
+import { Express } from "@/components/ui/svgs/express";
+import { Bullmq } from "@/components/ui/svgs/bullmq";
+import { Prisma } from "@/components/ui/svgs/prisma";
+import { Websocket } from "@/components/ui/svgs/websocket";
+import { Redis } from "@/components/ui/svgs/redis";
+import { Mongodb } from "@/components/ui/svgs/mongodb";
+import { Supabase } from "@/components/ui/svgs/supabase";
+import { ReactQuery } from "@/components/ui/svgs/reactquery";
+import { Html5 } from "@/components/ui/svgs/html5";
+import { Aws } from "@/components/ui/svgs/aws";
+import { Azure } from "@/components/ui/svgs/azure";
+import { Nginx } from "@/components/ui/svgs/nginx";
+import { GithubActions } from "@/components/ui/svgs/githubactions";
+import { Linux } from "@/components/ui/svgs/linux";
+import { Git } from "@/components/ui/svgs/git";
+import { Postman } from "@/components/ui/svgs/postman";
+import { Vercel } from "@/components/ui/svgs/vercel";
+import { Render } from "@/components/ui/svgs/render";
 
 // =============================================================================
 // Single source of truth for the whole site. Populated from Vedant's resume.
@@ -33,7 +53,7 @@ export const DATA = {
   description:
     "Backend developer who likes building fast, fault-tolerant distributed systems.",
   summary:
-    "I'm a Backend Developer and a B.Tech student at [BIT Mesra](/#education), focused on building resilient, real-time distributed systems. Most recently I interned at [Neo Labs](/#work), where I worked on production-grade Node.js infrastructure — LLM cost circuit breakers, dead-letter-queue recovery across workers, and async data-export pipelines. I like the hard parts of backend engineering: queues, state machines, sandboxing, observability and keeping things running when third-party services fall over. I've also solved 400+ DSA problems and love turning gnarly systems problems into clean, deterministic designs.",
+    "I'm a backend developer and a first-year student at [BIT Mesra](/#education).\n\nI like building resilient, real-time distributed systems. I'm fascinated by the hard parts of infrastructure—things like message queues, sandboxed runtimes, and keeping systems running when upstream APIs fail.\n\nLately, I've been:\n- Interning at [Neo Labs](/#work) working on production-grade Node.js infrastructure.\n- Shrinking sandbox cold starts by 99% (down to 8ms) in my [distributed code execution engine](/#projects).\n- Designing a real-time traffic simulator running over a 294-junction graph.\n\nI've also solved 400+ DSA problems. Right now, I'm looking for a challenging backend internship during placement season where I can get my hands dirty with infrastructure.",
   avatarUrl: "/me.png", // TODO(vedant): drop your photo at public/me.png
   navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
 
@@ -45,8 +65,8 @@ export const DATA = {
       icon: Code2,
       items: [
         { name: "TypeScript", icon: Typescript },
-        { name: "JavaScript" },
-        { name: "C++" },
+        { name: "JavaScript", icon: Javascript },
+        { name: "C++", icon: Cpp },
         { name: "Go", icon: Golang },
       ],
     },
@@ -54,48 +74,48 @@ export const DATA = {
       icon: Server,
       items: [
         { name: "Node.js", icon: Nodejs },
-        { name: "Express.js" },
-        { name: "BullMQ" },
-        { name: "Prisma" },
-        { name: "WebSockets" },
+        { name: "Express.js", icon: Express },
+        { name: "BullMQ", icon: Bullmq },
+        { name: "Prisma", icon: Prisma },
+        { name: "WebSockets", icon: Websocket },
       ],
     },
     Databases: {
       icon: Database,
       items: [
         { name: "PostgreSQL", icon: Postgresql },
-        { name: "Redis" },
-        { name: "MongoDB" },
-        { name: "Supabase" },
+        { name: "Redis", icon: Redis },
+        { name: "MongoDB", icon: Mongodb },
+        { name: "Supabase", icon: Supabase },
       ],
     },
     Frontend: {
       icon: MonitorSmartphone,
       items: [
         { name: "React", icon: ReactLight },
-        { name: "React Query" },
-        { name: "HTML5 / CSS3" },
+        { name: "React Query", icon: ReactQuery },
+        { name: "HTML5 / CSS3", icon: Html5 },
       ],
     },
     DevOps: {
       icon: Cloud,
       items: [
         { name: "Docker", icon: Docker },
-        { name: "AWS (EC2)" },
-        { name: "Azure Blob Storage" },
-        { name: "Nginx" },
-        { name: "GitHub Actions" },
-        { name: "Linux" },
+        { name: "AWS (EC2)", icon: Aws },
+        { name: "Azure Blob Storage", icon: Azure },
+        { name: "Nginx", icon: Nginx },
+        { name: "GitHub Actions", icon: GithubActions },
+        { name: "Linux", icon: Linux },
         { name: "Kubernetes", icon: Kubernetes },
       ],
     },
     Tools: {
       icon: Wrench,
       items: [
-        { name: "Git" },
-        { name: "Postman" },
-        { name: "Vercel" },
-        { name: "Render" },
+        { name: "Git", icon: Git },
+        { name: "Postman", icon: Postman },
+        { name: "Vercel", icon: Vercel },
+        { name: "Render", icon: Render },
       ],
     },
   },
@@ -144,11 +164,15 @@ export const DATA = {
       badges: [],
       location: "Remote",
       title: "Backend Developer Intern",
-      logoUrl: "/neolabs.png", // TODO(vedant): public/neolabs.png
+      logoUrl: "/neolabs.jpeg",
       start: "Apr 2026",
       end: "Jun 2026",
-      description:
-        "Worked on production Node.js infrastructure (TypeScript, Node.js, PostgreSQL, Redis, BullMQ, Azure Blob Storage). Architected a real-time OpenAI financial circuit breaker across API and worker nodes using Redis atomic evaluation (MULTI/LUA), enforcing per-user and global daily hard caps that mitigated runaway embedding loops and protected production budgets from uncapped LLM costs. Resolved a silent-failure gap across 7 production workers where jobs exhausting retries vanished without a trace, implementing a standardized dead-letter-queue handler with audit logging that restored failure visibility platform-wide. Built an asynchronous data-export pipeline generating user data as JSON/PDF, uploading to Azure Blob via SAS-signed URLs, and triggering push/in-app notifications on completion via a shared FCM/APNs dispatcher. Devised a two-step direct-to-blob audio upload flow (client-side SAS PUT, server-side confirm) with size-spoofing protection and mime validation, wiring successful uploads into the transcription pipeline.",
+      description: [
+        "Architected a real-time OpenAI financial circuit breaker across API and worker nodes using Redis atomic evaluation (MULTI/LUA), enforcing per-user and global daily hard caps that mitigated runaway embedding loops and protected production budgets from uncapped LLM costs.",
+        "Resolved a silent-failure gap across 7 production workers where jobs exhausting retries vanished without a trace, implementing a standardized dead-letter-queue handler with audit logging that restored failure visibility platform-wide.",
+        "Built an asynchronous data-export pipeline generating user data as JSON/PDF, uploading to Azure Blob via SAS-signed URLs, and triggering push/in-app notifications on completion via a shared FCM/APNs dispatcher.",
+        "Devised a two-step direct-to-blob audio upload flow (client-side SAS PUT, server-side confirm) with size-spoofing protection and mime validation, wiring successful uploads into the transcription pipeline.",
+      ],
     },
   ],
 
@@ -158,131 +182,32 @@ export const DATA = {
       href: "https://www.bitmesra.ac.in",
       degree:
         "B.Tech in Electrical and Electronics Engineering · CGPA 8.78/10",
-      logoUrl: "/bitmesra.png", // TODO(vedant): public/bitmesra.png
+      logoUrl: "/birlainstituteoftechnologymesra.jpeg",
       start: "Aug 2024",
       end: "May 2028",
+      highlights: [
+        "G.P. Birla Scholarship (2x) — Awarded twice for outstanding academic performance.",
+        "Branch Topper — Ranked 1st in Electrical & Electronics Engineering in Semester 1.",
+      ],
     },
   ],
 
   // ---------------------------------------------------------------------------
   // Projects — vertical timeline of wide cards.
   // ---------------------------------------------------------------------------
-  projects: [
-    {
-      title: "Code Execution Engine",
-      href: "#", // TODO(vedant): live URL
-      dates: "2025",
-      active: true,
-      tagline: "Distributed, sandboxed code-execution platform.",
-      builtWith:
-        "Built a distributed sandboxed execution platform with a pre-warmed container pool, real-time log streaming and self-healing job recovery.",
-      description: "",
-      image: "", // TODO(vedant): screenshot at public/projects/code-execution-engine.png
-      bullets: [
-        "Designed a distributed, sandboxed execution platform with a pre-warmed container pool, cutting sandbox startup time by 99% (8ms vs. 2s cold start) and reducing runtime latency to <230ms.",
-        "Implemented a fault-tolerant job lifecycle using BullMQ and Redis to enforce a deterministic state machine, with self-healing DLQ routing and exponential backoffs for recovery across worker crashes.",
-        "Developed a real-time observability pipeline using Redis Pub/Sub and WebSockets to stream stdout/stderr logs and execution traces live to the client.",
-        "Orchestrated a 4-service architecture with Docker Compose and deployed on AWS EC2 behind an Nginx reverse proxy with CI/CD via GitHub Actions.",
-      ],
-      technologies: [
-        "Node.js",
-        "TypeScript",
-        "Express",
-        "PostgreSQL",
-        "Redis",
-        "BullMQ",
-        "WebSockets",
-        "Docker",
-        "AWS EC2",
-        "Nginx",
-      ],
-      links: [
-        {
-          type: "Live",
-          href: "#", // TODO(vedant): live URL
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "GitHub",
-          href: "#", // TODO(vedant): repo URL
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-    },
-    {
-      title: "Niyantran",
-      href: "#", // TODO(vedant): live URL
-      dates: "2025",
-      active: true,
-      tagline: "Real-time traffic simulation & fleet-dispatch engine.",
-      builtWith:
-        "Built a real-time traffic simulation over a 294-junction road graph that computes optimized fleet dispatch and barricade plans, with deterministic fallbacks for third-party outages.",
-      description: "",
-      image: "", // TODO(vedant): screenshot at public/projects/niyantran.png
-      bullets: [
-        "Engineered a real-time traffic simulation on a 294-junction road graph using weighted BFS with time-of-day cascade multipliers to dynamically compute optimized fleet dispatch and barricade plans per event.",
-        "Assembled an async Node.js backend with WebSockets, Redis Pub/Sub and BullMQ to broadcast 30-second simulation ticks and live spatial telemetry with sub-second delivery.",
-        "Integrated Groq LLMs, Mappls API and Twilio (WhatsApp) for routing and alerts, with a multi-layer deterministic fallback — rule-based plans on Groq failure, haversine routing on Mappls outage.",
-        "Containerized a 5-service stack with Docker Compose, deployed to AWS EC2 with Nginx reverse proxy for WebSocket upgrading, and configured GitHub Actions CI/CD gating on all service builds.",
-      ],
-      technologies: [
-        "Node.js",
-        "TypeScript",
-        "Express",
-        "PostgreSQL",
-        "Redis",
-        "BullMQ",
-        "WebSockets",
-        "Docker",
-        "AWS EC2",
-        "Nginx",
-        "Groq",
-        "Mappls API",
-      ],
-      links: [
-        {
-          type: "Live",
-          href: "#", // TODO(vedant): live URL
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "GitHub",
-          href: "#", // TODO(vedant): repo URL
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-    },
-  ],
+
 
   // ---------------------------------------------------------------------------
   // Achievements (awards, rankings, competitions).
   // ---------------------------------------------------------------------------
   achievements: [
     {
-      title: "G.P. Birla Scholarship (2x)",
-      dates: "BIT Mesra",
-      location: "",
-      description:
-        "Awarded twice for outstanding academic performance at BIT Mesra.",
-      image: "",
-      links: [],
-    },
-    {
-      title: "Branch Topper",
-      dates: "Semester 1",
-      location: "",
-      description:
-        "Ranked 1st in the Electrical & Electronics Engineering branch in Semester 1.",
-      image: "",
-      links: [],
-    },
-    {
       title: "Flipkart GRiD 2.0 — Round 2 Qualifier",
       dates: "National level",
       location: "",
       description:
         "Qualified for Round 2 out of 4,500+ competing teams in Flipkart's national-level AI traffic management challenge.",
-      image: "",
+      image: "/flipkart_grid.png",
       links: [],
     },
     {

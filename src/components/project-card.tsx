@@ -36,6 +36,7 @@ interface Props {
   dates: string;
   tags: readonly string[];
   image?: string;
+  image2?: string;
   video?: string;
   bullets?: readonly string[];
   links?: readonly {
@@ -55,6 +56,7 @@ export function ProjectCard({
   dates,
   tags,
   image,
+  image2,
   video,
   bullets,
   links,
@@ -120,27 +122,37 @@ export function ProjectCard({
 
       <hr className="border-border" />
 
-      {/* Screenshot beside bullet list */}
+      {/* Two stacked screenshots beside bullet list */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
-        <Link
-          href={href || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block"
-        >
-          {video ? (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full aspect-video rounded-lg border border-border object-cover"
-            />
-          ) : (
-            <ProjectImage src={image || ""} alt={title} />
-          )}
-        </Link>
+        <div className="flex flex-col gap-3">
+          <Link
+            href={href || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            {video ? (
+              <video
+                src={video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full aspect-video rounded-lg border border-border object-cover"
+              />
+            ) : (
+              <ProjectImage src={image || ""} alt={title} />
+            )}
+          </Link>
+          <Link
+            href={href || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <ProjectImage src={image2 || ""} alt={`${title} — screenshot 2`} />
+          </Link>
+        </div>
 
         <div className="flex flex-col gap-2">
           {bullets && bullets.length > 0 ? (
