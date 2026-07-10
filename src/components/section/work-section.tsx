@@ -51,7 +51,7 @@ export default function WorkSection() {
           </div>
 
           {/* Bullet points — always visible */}
-          <ul className="ml-13 flex flex-col gap-1.5">
+          <ul className="ml-11 sm:ml-13 flex flex-col gap-1.5">
             {work.description.map((bullet, idx) => (
               <li
                 key={idx}

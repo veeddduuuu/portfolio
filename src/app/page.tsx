@@ -102,7 +102,7 @@ export default function Page() {
                     href={education.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-x-3 justify-between group"
+                    className="flex items-start gap-x-3 justify-between group"
                   >
                     <div className="flex items-center gap-x-3 flex-1 min-w-0">
                       {education.logoUrl ? (
@@ -127,14 +127,14 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
+                     <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none shrink-0">
                       <span>
                         {education.start} - {education.end}
                       </span>
                     </div>
                   </Link>
                   {education.highlights && education.highlights.length > 0 && (
-                    <ul className="ml-13 flex flex-col gap-1">
+                    <ul className="ml-11 sm:ml-13 flex flex-col gap-1">
                       {education.highlights.map((highlight, hIdx) => (
                         <li
                           key={hIdx}
@@ -199,7 +199,7 @@ export default function Page() {
         </div>
       </section>
       {/* Projects break out of the narrow column to fit the wide timeline cards */}
-      <div className="mx-[calc(50%-50vw)] w-screen px-6">
+      <div className="mx-[calc(50%-50vw)] w-screen px-4 sm:px-6">
         <div className="mx-auto max-w-3xl">
           <BlurFade inView delay={BLUR_FADE_DELAY}>
             <ProjectsSection />
