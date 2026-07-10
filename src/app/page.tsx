@@ -56,7 +56,11 @@ export default function Page() {
                 className="pointer-events-none absolute -inset-3 rounded-full bg-foreground/[0.07] blur-2xl"
               />
               <Avatar className="relative size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted transition-transform duration-300 hover:scale-[1.03]">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                <AvatarImage
+                  alt={DATA.name}
+                  src={DATA.avatarUrl}
+                  className="object-cover"
+                />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
             </BlurFade>
