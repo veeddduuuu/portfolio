@@ -24,7 +24,7 @@ export default function Page() {
             <div className="gap-2 flex flex-col order-2 md:order-1">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
+                className="bg-linear-to-r from-foreground via-foreground to-brand bg-clip-text text-3xl font-semibold tracking-tighter text-transparent sm:text-4xl lg:text-5xl"
                 yOffset={8}
                 text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
               />
@@ -46,8 +46,16 @@ export default function Page() {
                 </Button>
               </BlurFade>
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
+            <BlurFade
+              delay={BLUR_FADE_DELAY}
+              className="order-1 md:order-2 relative"
+            >
+              {/* Soft glow behind the avatar — subtle, reads best in dark mode */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-3 rounded-full bg-foreground/[0.07] blur-2xl"
+              />
+              <Avatar className="relative size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted transition-transform duration-300 hover:scale-[1.03]">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -57,10 +65,10 @@ export default function Page() {
       </section>
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <BlurFade inView delay={BLUR_FADE_DELAY}>
             <h2 className="text-xl font-bold">About</h2>
           </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
+          <BlurFade inView delay={BLUR_FADE_DELAY * 2}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
               <Markdown>{DATA.summary}</Markdown>
             </div>
@@ -69,24 +77,25 @@ export default function Page() {
       </section>
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
+          <BlurFade inView delay={BLUR_FADE_DELAY}>
             <h2 className="text-xl font-bold">Work Experience</h2>
           </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
+          <BlurFade inView delay={BLUR_FADE_DELAY * 2}>
             <WorkSection />
           </BlurFade>
         </div>
       </section>
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 7}>
+          <BlurFade inView delay={BLUR_FADE_DELAY}>
             <h2 className="text-xl font-bold">Education</h2>
           </BlurFade>
           <div className="flex flex-col gap-8">
             {DATA.education.map((education, index) => (
               <BlurFade
+                inView
                 key={education.school}
-                delay={BLUR_FADE_DELAY * 8 + index * 0.05}
+                delay={BLUR_FADE_DELAY * 2 + index * 0.05}
               >
                 <div className="flex flex-col gap-3">
                   <Link
@@ -109,7 +118,7 @@ export default function Page() {
                         <div className="font-semibold leading-none flex items-center gap-2">
                           {education.school}
                           <ArrowUpRight
-                            className="h-3.5 w-3.5 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+                            className="h-3.5 w-3.5 text-brand opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
                             aria-hidden
                           />
                         </div>
@@ -145,7 +154,7 @@ export default function Page() {
       </section>
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
+          <BlurFade inView delay={BLUR_FADE_DELAY}>
             <h2 className="text-xl font-bold">Skills</h2>
           </BlurFade>
           <div className="flex flex-col gap-y-5">
@@ -153,34 +162,36 @@ export default function Page() {
               ([category, group], categoryIndex) => {
                 const CategoryIcon = group.icon;
                 return (
-                  <BlurFade
-                    key={category}
-                    delay={BLUR_FADE_DELAY * 10 + categoryIndex * 0.05}
-                  >
-                    <div className="flex flex-col gap-y-2">
+                  <div key={category} className="flex flex-col gap-y-2">
+                    <BlurFade inView delay={BLUR_FADE_DELAY * categoryIndex}>
                       <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                         {CategoryIcon && (
                           <CategoryIcon className="size-4 text-muted-foreground" />
                         )}
                         {category}
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {group.items.map((skill) => (
-                          <div
-                            key={skill.name}
-                            className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2"
-                          >
+                    </BlurFade>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((skill, skillIndex) => (
+                        <BlurFade
+                          inView
+                          key={skill.name}
+                          delay={
+                            BLUR_FADE_DELAY * categoryIndex + skillIndex * 0.03
+                          }
+                        >
+                          <div className="group border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:ring-brand/15 hover:shadow-[0_6px_18px_-6px] hover:shadow-brand/30">
                             {"icon" in skill && skill.icon && (
-                              <skill.icon className="size-4 rounded overflow-hidden object-contain" />
+                              <skill.icon className="size-4 rounded overflow-hidden object-contain transition-transform duration-200 group-hover:scale-110" />
                             )}
                             <span className="text-foreground text-sm font-medium">
                               {skill.name}
                             </span>
                           </div>
-                        ))}
-                      </div>
+                        </BlurFade>
+                      ))}
                     </div>
-                  </BlurFade>
+                  </div>
                 );
               }
             )}
@@ -190,18 +201,18 @@ export default function Page() {
       {/* Projects break out of the narrow column to fit the wide timeline cards */}
       <div className="mx-[calc(50%-50vw)] w-screen px-6">
         <div className="mx-auto max-w-3xl">
-          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+          <BlurFade inView delay={BLUR_FADE_DELAY}>
             <ProjectsSection />
           </BlurFade>
         </div>
       </div>
       <section id="achievements">
-        <BlurFade delay={BLUR_FADE_DELAY * 13}>
+        <BlurFade inView delay={BLUR_FADE_DELAY}>
           <AchievementsSection />
         </BlurFade>
       </section>
       <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 16}>
+        <BlurFade inView delay={BLUR_FADE_DELAY}>
           <ContactSection />
         </BlurFade>
       </section>

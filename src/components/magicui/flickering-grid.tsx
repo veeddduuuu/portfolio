@@ -175,6 +175,10 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
     updateCanvasSize()
 
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
     let lastTime = 0
     const animate = (time: number) => {
       if (!isInView) return
@@ -182,7 +186,10 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       const deltaTime = (time - lastTime) / 1000
       lastTime = time
 
-      updateSquares(gridParams.squares, deltaTime)
+      // Skip the flicker for reduced-motion users, but still paint one static frame.
+      if (!prefersReducedMotion) {
+        updateSquares(gridParams.squares, deltaTime)
+      }
       drawGrid(
         ctx,
         canvas.width,
@@ -192,7 +199,9 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
         gridParams.squares,
         gridParams.dpr
       )
-      animationFrameId = requestAnimationFrame(animate)
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(animate)
+      }
     }
 
     const resizeObserver = new ResizeObserver(() => {

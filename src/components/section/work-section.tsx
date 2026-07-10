@@ -16,7 +16,7 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
+      className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none transition-all duration-200 group-hover:ring-foreground/25"
       onError={() => setImageError(true)}
     />
   );
@@ -28,7 +28,7 @@ export default function WorkSection() {
       {DATA.work.map((work) => (
         <div
           key={work.company}
-          className="w-full grid gap-3"
+          className="group w-full grid gap-3"
         >
           {/* Header row */}
           <div className="flex items-center gap-x-3 justify-between w-full text-left">

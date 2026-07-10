@@ -15,8 +15,8 @@ export default function AchievementsSection() {
         <div className="flex flex-col gap-y-4 items-center justify-center">
           <div className="flex items-center w-full">
             <div className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent" />
-            <div className="border bg-primary z-10 rounded-xl px-4 py-1">
-              <span className="text-background text-sm font-medium">
+            <div className="z-10 rounded-xl border border-brand/30 bg-linear-to-r from-brand to-brand-2 px-4 py-1 shadow-[0_2px_24px_-4px] shadow-brand/50">
+              <span className="text-sm font-medium text-white">
                 Achievements
               </span>
             </div>
@@ -36,14 +36,14 @@ export default function AchievementsSection() {
           {DATA.achievements.map((achievement) => (
             <TimelineItem
               key={achievement.title + achievement.dates}
-              className="w-full flex items-start justify-between gap-10"
+              className="group w-full flex items-start justify-between gap-10"
             >
               <TimelineConnectItem className="flex items-start justify-center">
                 {achievement.image ? (
                   <img
                     src={achievement.image}
                     alt={achievement.title}
-                    className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border object-contain flex-none"
+                    className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border object-contain flex-none transition-all duration-200 group-hover:ring-foreground/25"
                   />
                 ) : (
                   <div className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border flex-none" />
@@ -56,7 +56,7 @@ export default function AchievementsSection() {
                   </time>
                 )}
                 {achievement.title && (
-                  <h3 className="font-semibold leading-none">
+                  <h3 className="font-semibold leading-none transition-colors duration-200 group-hover:text-foreground/70">
                     {achievement.title}
                   </h3>
                 )}

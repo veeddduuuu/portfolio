@@ -67,7 +67,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "flex w-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-all duration-200 hover:ring-2 hover:ring-muted sm:p-6",
+        "flex w-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-brand/30 hover:ring-2 hover:ring-brand/20 hover:shadow-[0_12px_40px_-16px] hover:shadow-brand/40 sm:p-6",
         className
       )}
     >
@@ -81,9 +81,11 @@ export function ProjectCard({
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-1.5"
             >
-              <h3 className="text-lg font-semibold leading-none">{title}</h3>
+              <h3 className="text-lg font-semibold leading-none transition-colors duration-200 group-hover:text-brand">
+                {title}
+              </h3>
               <ArrowUpRight
-                className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-1 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                className="h-4 w-4 text-brand opacity-0 -translate-x-1 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
                 aria-hidden
               />
             </Link>

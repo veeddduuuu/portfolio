@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import {
@@ -17,8 +16,8 @@ export default function ProjectsSection() {
         <div className="flex flex-col gap-y-4 items-center justify-center">
           <div className="flex items-center w-full">
             <div className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent" />
-            <div className="border bg-primary z-10 rounded-xl px-4 py-1">
-              <span className="text-background text-sm font-medium">
+            <div className="z-10 rounded-xl border border-brand/30 bg-linear-to-r from-brand to-brand-2 px-4 py-1 shadow-[0_2px_24px_-4px] shadow-brand/50">
+              <span className="text-sm font-medium text-white">
                 My Projects
               </span>
             </div>
@@ -42,10 +41,11 @@ export default function ProjectsSection() {
               className="flex w-full items-start justify-between gap-6"
             >
               <TimelineConnectItem className="flex items-start justify-center pt-5">
-                <div className="size-4 bg-background z-10 shrink-0 rounded-full border-2 border-primary ring-4 ring-background" />
+                <div className="size-4 bg-background z-10 shrink-0 rounded-full border-2 border-brand ring-4 ring-background shadow-[0_0_12px] shadow-brand/50" />
               </TimelineConnectItem>
               <BlurFade
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                inView
+                delay={BLUR_FADE_DELAY + id * 0.05}
                 className="min-w-0 flex-1"
               >
                 <ProjectCard
