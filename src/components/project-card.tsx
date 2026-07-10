@@ -1,9 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import ArchitectureDiagram, {
+  type Architecture,
+} from "@/components/architecture-diagram";
+import FlipCard from "@/components/flip-card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Layers, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Markdown from "react-markdown";
@@ -41,6 +45,7 @@ interface Props {
   image2?: string;
   video?: string;
   bullets?: readonly string[];
+  architecture?: Architecture;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -61,18 +66,25 @@ export function ProjectCard({
   image2,
   video,
   bullets,
+  architecture,
   links,
   className,
 }: Props) {
-  return (
+  const [flipped, setFlipped] = useState(false);
+
+  const cardShell =
+    "flex w-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-all duration-300 sm:p-6";
+
+  const front = (
     <div
       className={cn(
-        "flex w-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-brand/30 hover:ring-2 hover:ring-brand/20 hover:shadow-[0_12px_40px_-16px] hover:shadow-brand/40 sm:p-6",
+        cardShell,
+        "hover:border-brand/30 hover:ring-2 hover:ring-brand/20 hover:shadow-[0_12px_40px_-16px] hover:shadow-brand/40",
         className
       )}
     >
-      {/* Header: title + tagline on the left, Live/GitHub on the right */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+      {/* Header: title + tagline on the left, actions on the right */}
+      <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 flex-col gap-1">
           <div className="flex items-center gap-2">
             <Link
@@ -97,9 +109,21 @@ export function ProjectCard({
             <p className="text-sm text-muted-foreground">{tagline}</p>
           )}
         </div>
-        {links && links.length > 0 && (
-          <div className="flex shrink-0 flex-wrap items-center gap-2">
-            {links.map((link, idx) => (
+        <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+          {architecture && (
+            <button
+              type="button"
+              onClick={() => setFlipped(true)}
+              aria-label="Show architecture"
+              className="inline-flex items-center gap-1.5 rounded-md border border-brand/30 bg-brand/[0.06] px-2 py-1 text-xs font-medium text-brand transition-colors hover:border-brand/50 hover:bg-brand/10"
+            >
+              <Layers className="size-3" />
+              Under the Hood
+            </button>
+          )}
+          {links &&
+            links.length > 0 &&
+            links.map((link, idx) => (
               <Link
                 href={link.href}
                 key={idx}
@@ -115,8 +139,7 @@ export function ProjectCard({
                 </Badge>
               </Link>
             ))}
-          </div>
-        )}
+        </div>
       </div>
 
       {/* "Built a X that does Y" one-liner */}
@@ -200,4 +223,44 @@ export function ProjectCard({
       )}
     </div>
   );
+
+  const back = architecture ? (
+    <div
+      className={cn(
+        cardShell,
+        "border-brand/30 ring-1 ring-brand/10",
+        className
+      )}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex min-w-0 flex-col gap-1">
+          <div className="flex items-center gap-2 text-brand">
+            <Layers className="size-4" />
+            <h3 className="text-lg font-semibold leading-none">
+              Architecture
+            </h3>
+          </div>
+          <p className="text-sm text-muted-foreground">{title}</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setFlipped(false)}
+          aria-label="Back to overview"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
+        >
+          <RotateCcw className="size-3" />
+          Back
+        </button>
+      </div>
+
+      <hr className="border-border" />
+
+      <ArchitectureDiagram arch={architecture} />
+    </div>
+  ) : null;
+
+  // Without an architecture spec there's nothing to flip to — render plainly.
+  if (!architecture) return front;
+
+  return <FlipCard flipped={flipped} front={front} back={back} />;
 }

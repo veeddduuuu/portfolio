@@ -1,5 +1,6 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
+import SystemsStatus from "@/components/section/systems-status";
 import {
   Timeline,
   TimelineItem,
@@ -34,6 +35,9 @@ export default function ProjectsSection() {
           </div>
         </div>
 
+        {/* Live health of the deployed projects — proof they actually run */}
+        <SystemsStatus />
+
         <Timeline>
           {DATA.projects.map((project, id) => (
             <TimelineItem
@@ -59,6 +63,7 @@ export default function ProjectsSection() {
                   image={project.image}
                   image2={project.image2}
                   bullets={project.bullets}
+                  architecture={project.architecture}
                   links={project.links}
                 />
               </BlurFade>
