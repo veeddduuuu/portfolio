@@ -84,7 +84,7 @@ export function ProjectCard({
       )}
     >
       {/* Header: title + tagline on the left, actions on the right */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div className="flex min-w-0 flex-col gap-1">
           <div className="flex items-center gap-2">
             <Link
@@ -109,7 +109,7 @@ export function ProjectCard({
             <p className="text-sm text-muted-foreground">{tagline}</p>
           )}
         </div>
-        <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+        <div className="flex shrink-0 flex-wrap items-center gap-2">
           {architecture && (
             <button
               type="button"
@@ -232,7 +232,7 @@ export function ProjectCard({
         className
       )}
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div className="flex min-w-0 flex-col gap-1">
           <div className="flex items-center gap-2 text-brand">
             <Layers className="size-4" />
