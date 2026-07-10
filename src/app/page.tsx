@@ -11,6 +11,8 @@ import ContactSection from "@/components/section/contact-section";
 import AchievementsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
+import StatsSection from "@/components/section/stats-section";
+import SystemsSection from "@/components/section/systems-section";
 import { ArrowUpRight } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
@@ -62,6 +64,11 @@ export default function Page() {
             </BlurFade>
           </div>
         </div>
+      </section>
+      <section id="impact">
+        <BlurFade inView delay={BLUR_FADE_DELAY}>
+          <StatsSection />
+        </BlurFade>
       </section>
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
@@ -203,6 +210,14 @@ export default function Page() {
         <div className="mx-auto max-w-3xl">
           <BlurFade inView delay={BLUR_FADE_DELAY}>
             <ProjectsSection />
+          </BlurFade>
+        </div>
+      </div>
+      {/* Systems section shares the wider column so the diagram has room */}
+      <div className="mx-[calc(50%-50vw)] w-screen px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl">
+          <BlurFade inView delay={BLUR_FADE_DELAY}>
+            <SystemsSection />
           </BlurFade>
         </div>
       </div>
