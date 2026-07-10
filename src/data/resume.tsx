@@ -231,6 +231,36 @@ export const DATA = {
         "AWS EC2",
         "Nginx",
       ],
+      // Rendered on the back of the card via the "Under the Hood" flip.
+      architecture: {
+        blurb:
+          "Distributed, sandboxed execution with a pre-warmed container pool and self-healing jobs.",
+        tiers: [
+          { nodes: [{ label: "Client", sub: "web UI" }] },
+          { nodes: [{ label: "Nginx", sub: "reverse proxy · TLS" }] },
+          { nodes: [{ label: "API", sub: "Express · TypeScript" }] },
+          {
+            nodes: [{ label: "BullMQ", sub: "Redis queue", accent: true }],
+            note: "deterministic state machine · exponential backoff",
+          },
+          {
+            nodes: [
+              { label: "Worker", sub: "sandbox" },
+              { label: "Worker", sub: "sandbox" },
+              { label: "Worker", sub: "sandbox" },
+            ],
+            note: "pre-warmed container pool · 8ms cold start",
+          },
+        ],
+        sidecars: [
+          {
+            label: "Redis Pub/Sub → WebSocket",
+            sub: "live stdout/stderr stream",
+          },
+          { label: "PostgreSQL", sub: "job + run history" },
+          { label: "Dead-letter queue", sub: "self-healing recovery" },
+        ],
+      },
       links: [
         {
           type: "Live",
@@ -275,6 +305,30 @@ export const DATA = {
         "Groq",
         "Mappls API",
       ],
+      architecture: {
+        blurb:
+          "Real-time traffic simulation over a 294-junction graph with deterministic fallbacks.",
+        tiers: [
+          { nodes: [{ label: "Client", sub: "ops dashboard" }] },
+          { nodes: [{ label: "Nginx", sub: "WebSocket upgrade" }] },
+          { nodes: [{ label: "API", sub: "Express · TypeScript" }] },
+          {
+            nodes: [{ label: "Sim engine", sub: "weighted BFS", accent: true }],
+            note: "294-junction graph · 30s cascade ticks",
+          },
+          {
+            nodes: [
+              { label: "BullMQ · Redis Pub/Sub", sub: "telemetry fan-out" },
+            ],
+            note: "sub-second spatial broadcast",
+          },
+        ],
+        sidecars: [
+          { label: "Groq LLM", sub: "routing · rule-based fallback" },
+          { label: "Mappls API", sub: "routing · haversine fallback" },
+          { label: "Twilio", sub: "WhatsApp alerts" },
+        ],
+      },
       links: [
         {
           type: "Live",
