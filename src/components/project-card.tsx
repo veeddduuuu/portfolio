@@ -149,37 +149,46 @@ export function ProjectCard({
 
       <hr className="border-border" />
 
-      {/* Two stacked screenshots beside bullet list */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
-        <div className="flex flex-col gap-3">
-          <Link
-            href={href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            {video ? (
-              <video
-                src={video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full aspect-video rounded-lg border border-border object-cover"
-              />
-            ) : (
-              <ProjectImage src={image || ""} alt={title} />
+      {/* Two stacked screenshots beside bullet list (or full width list if no media) */}
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-4 md:items-start",
+          (image || image2 || video) && "md:grid-cols-2"
+        )}
+      >
+        {(image || image2 || video) && (
+          <div className="flex flex-col gap-3">
+            <Link
+              href={href || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              {video ? (
+                <video
+                  src={video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full aspect-video rounded-lg border border-border object-cover"
+                />
+              ) : (
+                <ProjectImage src={image || ""} alt={title} />
+              )}
+            </Link>
+            {(image2) && (
+              <Link
+                href={href || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <ProjectImage src={image2} alt={`${title} — screenshot 2`} />
+              </Link>
             )}
-          </Link>
-          <Link
-            href={href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <ProjectImage src={image2 || ""} alt={`${title} — screenshot 2`} />
-          </Link>
-        </div>
+          </div>
+        )}
 
         <div className="flex flex-col gap-2">
           {bullets && bullets.length > 0 ? (

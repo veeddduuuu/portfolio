@@ -342,6 +342,57 @@ export const DATA = {
         },
       ],
     },
+    {
+      title: "PowerShell Agent",
+      href: "https://github.com/veeddduuuu/pwsh-agent-langgraph",
+      dates: "2026",
+      active: true,
+      tagline: "Natural Language to Windows CLI Agent.",
+      builtWith: "Built an intelligent terminal assistant using LangGraph and Groq LLMs.",
+      description: "",
+      bullets: [
+        "Developed a natural language to CLI agent using LangGraph and Groq LLMs to translate plain English requests into PowerShell/Bash commands.",
+        "Implemented a deterministic state machine with built-in safety screening to evaluate and block destructive commands before execution.",
+        "Containerized the agent using Docker for isolated execution with interactive and single-shot execution modes."
+      ],
+      technologies: [
+        "Python",
+        "LangGraph",
+        "LangChain",
+        "Groq",
+        "Docker",
+        "PowerShell"
+      ],
+      architecture: {
+        blurb: "State machine driven command generation, safety screening, and execution using LangGraph.",
+        tiers: [
+          { nodes: [{ label: "User Prompt", sub: "Interactive / CLI args" }] },
+          { nodes: [{ label: "generate_command", sub: "Groq LLM processing", accent: true }] },
+          {
+            nodes: [{ label: "screen_command", sub: "Safety checks" }],
+            note: "Automatically blocks destructive commands"
+          },
+          {
+            nodes: [
+              { label: "execute_command", sub: "Safe command execution" },
+              { label: "blocked", sub: "Return safety reason" }
+            ],
+            note: "Requires user confirmation or --auto flag"
+          }
+        ],
+        sidecars: [
+          { label: "Docker Container", sub: "Isolated execution environment" },
+          { label: "PowerShell / Bash", sub: "Shell engine" }
+        ]
+      },
+      links: [
+        {
+          type: "GitHub",
+          href: "https://github.com/veeddduuuu/pwsh-agent-langgraph",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
   ],  // ---------------------------------------------------------------------------
   // Achievements (awards, rankings, competitions).
   // ---------------------------------------------------------------------------
