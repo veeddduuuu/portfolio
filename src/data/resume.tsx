@@ -350,6 +350,8 @@ export const DATA = {
       tagline: "Natural Language to Windows CLI Agent.",
       builtWith: "Built an intelligent terminal assistant using LangGraph and Groq LLMs.",
       description: "",
+      image: "",
+      image2: "",
       bullets: [
         "Developed a natural language to CLI agent using LangGraph and Groq LLMs to translate plain English requests into PowerShell/Bash commands.",
         "Implemented a deterministic state machine with built-in safety screening to evaluate and block destructive commands before execution.",
