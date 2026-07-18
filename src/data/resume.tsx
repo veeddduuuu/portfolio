@@ -6,7 +6,6 @@ import {
   Database,
   MonitorSmartphone,
   Cloud,
-  Wrench,
 } from "lucide-react";
 import { ReactLight } from "@/components/ui/svgs/reactLight";
 import { Typescript } from "@/components/ui/svgs/typescript";
@@ -14,27 +13,20 @@ import { Nodejs } from "@/components/ui/svgs/nodejs";
 import { Golang } from "@/components/ui/svgs/golang";
 import { Postgresql } from "@/components/ui/svgs/postgresql";
 import { Docker } from "@/components/ui/svgs/docker";
-import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { Javascript } from "@/components/ui/svgs/javascript";
 import { Cpp } from "@/components/ui/svgs/cpp";
 import { Express } from "@/components/ui/svgs/express";
 import { Bullmq } from "@/components/ui/svgs/bullmq";
-import { Prisma } from "@/components/ui/svgs/prisma";
 import { Websocket } from "@/components/ui/svgs/websocket";
 import { Redis } from "@/components/ui/svgs/redis";
-import { Mongodb } from "@/components/ui/svgs/mongodb";
-import { Supabase } from "@/components/ui/svgs/supabase";
 import { ReactQuery } from "@/components/ui/svgs/reactquery";
 import { Html5 } from "@/components/ui/svgs/html5";
 import { Aws } from "@/components/ui/svgs/aws";
-import { Azure } from "@/components/ui/svgs/azure";
 import { Nginx } from "@/components/ui/svgs/nginx";
 import { GithubActions } from "@/components/ui/svgs/githubactions";
 import { Linux } from "@/components/ui/svgs/linux";
-import { Git } from "@/components/ui/svgs/git";
-import { Postman } from "@/components/ui/svgs/postman";
-import { Vercel } from "@/components/ui/svgs/vercel";
-import { Render } from "@/components/ui/svgs/render";
+import { Grpc } from "@/components/ui/svgs/grpc";
+import { Rabbitmq } from "@/components/ui/svgs/rabbitmq";
 
 // =============================================================================
 // Single source of truth for the whole site. Populated from Vedant's resume.
@@ -64,10 +56,10 @@ export const DATA = {
     Languages: {
       icon: Code2,
       items: [
+        { name: "Go", icon: Golang },
         { name: "TypeScript", icon: Typescript },
         { name: "JavaScript", icon: Javascript },
         { name: "C++", icon: Cpp },
-        { name: "Go", icon: Golang },
       ],
     },
     Backend: {
@@ -75,8 +67,9 @@ export const DATA = {
       items: [
         { name: "Node.js", icon: Nodejs },
         { name: "Express.js", icon: Express },
+        { name: "gRPC", icon: Grpc },
+        { name: "RabbitMQ", icon: Rabbitmq },
         { name: "BullMQ", icon: Bullmq },
-        { name: "Prisma", icon: Prisma },
         { name: "WebSockets", icon: Websocket },
       ],
     },
@@ -85,8 +78,6 @@ export const DATA = {
       items: [
         { name: "PostgreSQL", icon: Postgresql },
         { name: "Redis", icon: Redis },
-        { name: "MongoDB", icon: Mongodb },
-        { name: "Supabase", icon: Supabase },
       ],
     },
     Frontend: {
@@ -102,20 +93,9 @@ export const DATA = {
       items: [
         { name: "Docker", icon: Docker },
         { name: "AWS (EC2)", icon: Aws },
-        { name: "Azure Blob Storage", icon: Azure },
         { name: "Nginx", icon: Nginx },
         { name: "GitHub Actions", icon: GithubActions },
         { name: "Linux", icon: Linux },
-        { name: "Kubernetes", icon: Kubernetes },
-      ],
-    },
-    Tools: {
-      icon: Wrench,
-      items: [
-        { name: "Git", icon: Git },
-        { name: "Postman", icon: Postman },
-        { name: "Vercel", icon: Vercel },
-        { name: "Render", icon: Render },
       ],
     },
   },
