@@ -45,7 +45,7 @@ export const DATA = {
   description:
     "Backend developer who likes building fast, fault-tolerant distributed systems.",
   summary:
-    "I'm a backend developer and a third-year student at [BIT Mesra](/#education).\n\nI like building resilient, real-time distributed systems. I'm fascinated by the hard parts of infrastructure—things like message queues, sandboxed runtimes, and keeping systems running when upstream APIs fail.\n\nLately, I've been:\n- Interning at [Neo Labs](/#work) working on production-grade Node.js infrastructure.\n- Shrinking sandbox cold starts by 99% (down to 8ms) in my [distributed code execution engine](/#projects).\n- Designing a real-time traffic simulator running over a 294-junction graph.\n\nI've also solved 400+ DSA problems. Right now, I'm looking for a challenging backend internship during placement season where I can get my hands dirty with infrastructure.",
+    "I'm a backend developer and a third-year student at [BIT Mesra](/#education).\n\nI like building resilient, real-time distributed systems. I'm fascinated by the hard parts of infrastructure—things like message queues, sandboxed runtimes, and keeping systems running when upstream APIs fail.\n\nLately, I've been:\n- Interning at [Neo Labs](/#work) working on production-grade Node.js infrastructure.\n- Surviving 9.2k+ RPS seat stampedes with zero double-bookings in [Stampede](/#projects).\n- Shrinking sandbox cold starts by 99% (down to 8ms) in my [distributed code execution engine](/#projects).\n- Designing a real-time traffic simulator running over a 294-junction graph.\n\nI've also solved 400+ DSA problems. Right now, I'm looking for a challenging backend internship during placement season where I can get my hands dirty with infrastructure.",
   avatarUrl: "/me.jpeg", // photo lives at public/me.jpeg
   navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
 
@@ -182,6 +182,84 @@ export const DATA = {
   // Projects — vertical timeline of wide cards.
   // ---------------------------------------------------------------------------
   projects: [
+    {
+      title: "Stampede",
+      href: "https://stampede-phi.vercel.app/",
+      dates: "2026",
+      active: true,
+      tagline: "High-concurrency seat reservation under flash-sale stampedes.",
+      builtWith:
+        "Built a hybrid Redis + PostgreSQL seat-booking engine that survives flash-sale stampedes with zero double-bookings, scaled behind Nginx across 3 Go API nodes.",
+      description: "",
+      image: "",
+      image2: "",
+      bullets: [
+        "Engineered a hybrid lock shield with Redis SETNX (3m TTL) and PostgreSQL UNIQUE(event_id, seat_id), rejecting ~97% of conflicting holds at the Redis fast path so Postgres never absorbs the stampede—zero double-bookings under load.",
+        "Horizontally scaled 3 Go Chi API nodes behind Nginx least_conn to sustain ~9,200 RPS across 40,000 concurrent hold requests (1× 201, 39,999× 409, 0 errors) with P99 under 50ms.",
+        "Replaced seat-map polling with Redis Pub/Sub fan-out into per-node WebSocket hubs, pushing hold/book/release state to clients in under 5ms.",
+        "Tuned Nginx worker_connections/keepalive, Redis client pools, and loadtest HTTP transports to eliminate backlog timeouts and kernel TIME_WAIT exhaustion under continuous high-concurrency runs.",
+      ],
+      technologies: [
+        "Go",
+        "Chi",
+        "Redis",
+        "PostgreSQL",
+        "Nginx",
+        "WebSockets",
+        "React",
+        "Docker",
+        "Prometheus",
+      ],
+      architecture: {
+        blurb:
+          "Hybrid Redis fast-path + Postgres ACID with WebSocket fan-out across a 3-node Go cluster.",
+        tiers: [
+          { nodes: [{ label: "Client", sub: "React seat map · WS" }] },
+          { nodes: [{ label: "Nginx", sub: "least_conn · keepalive" }] },
+          {
+            nodes: [
+              { label: "API", sub: "Go · Chi" },
+              { label: "API", sub: "Go · Chi", accent: true },
+              { label: "API", sub: "Go · Chi" },
+            ],
+            note: "stateless 3-node cluster",
+          },
+          {
+            nodes: [{ label: "Redis", sub: "SETNX · Pub/Sub", accent: true }],
+            note: "~97% DB shield · 3m hold TTL",
+          },
+          {
+            nodes: [
+              {
+                label: "PostgreSQL",
+                sub: "UNIQUE(event_id, seat_id) · ACID",
+              },
+            ],
+          },
+        ],
+        sidecars: [
+          { label: "WebSocket hub", sub: "per-node fan-out" },
+          {
+            label: "Docker Compose",
+            sub: "nginx · api1–3 · redis · postgres",
+          },
+          { label: "Prometheus", sub: "/metrics · hold counters" },
+          { label: "Loadtest runner", sub: "cmd/loadtest" },
+        ],
+      },
+      links: [
+        {
+          type: "Live",
+          href: "https://stampede-phi.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/veeddduuuu/stampede",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
     {
       title: "Code Execution Engine",
       href: "https://codeexec.duckdns.org",
