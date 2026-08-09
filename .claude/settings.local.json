@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /tmp/og.png -w \"HTTP %{http_code} · type=%{content_type} · bytes=%{size_download}\\\\n\" http://localhost:3000/opengraph-image --max-time 60)",
+      "Bash(echo \"exit=$?\")",
+      "Read(//tmp/**)"
+    ]
+  }
+}
