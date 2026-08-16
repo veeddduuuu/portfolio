@@ -191,8 +191,8 @@ export const DATA = {
       builtWith:
         "Built a hybrid Redis + PostgreSQL seat-booking engine that survives flash-sale stampedes with zero double-bookings, scaled behind Nginx across 3 Go API nodes.",
       description: "",
-      image: "",
-      image2: "",
+      image: "/projects/stampede.png",
+      image2: "/projects/stampede-2.png",
       bullets: [
         "Engineered a hybrid lock shield with Redis SETNX (3m TTL) and PostgreSQL UNIQUE(event_id, seat_id), rejecting ~97% of conflicting holds at the Redis fast path so Postgres never absorbs the stampede—zero double-bookings under load.",
         "Horizontally scaled 3 Go Chi API nodes behind Nginx least_conn to sustain ~9,200 RPS across 40,000 concurrent hold requests (1× 201, 39,999× 409, 0 errors) with P99 under 50ms.",
